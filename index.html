@@ -69,35 +69,58 @@
         <div> </div>
         <!-- Navbar End -->
                     <!-- popup form -->
-        <!-- <div class="form-popup">
+        <div class="form-popup">
             <div class="form-wrapper">
                 <div class="form-class">
-                    <div class="form-close">
-                        <i class="fa fa-circle-xmark"></i>
-                    </div>
+                    <button id="close">close &times;</button>
                     <h2> Get in Touch </h2>
-                    <input type="text" name="Name" id="Name" placeholder="Name">
-                    <input type="text" name="Phone" id="Phone" placeholder="Phone">
-                    <input type="text" name="Email" id="Email" placeholder="Email">
-
-                    <textarea name="Message" id="Message" cols="30" rows="3" placeholder="Comments"></textarea>
+                    <form name="submit-to-google-sheet" > 
+                    <input type="text" name="Name" id="Name" placeholder="Name" required style="border: none;">
+                    <input type="text" name="Phone" id="Phone" placeholder="Phone" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" required style="border: none;">
+                    <input type="text" name="Email" id="Email" placeholder="Email" required style="border: none;">
+                    <select id="package" class="form-control" id="package" name="Package" required style="background-color: white;">
+                        <option value="none">Select your Package</option>
+                        <option value="Resume for Freshers">Resume for Freshers</option>
+                        <option value="Entry Level Resume">Entry Level Resume</option>
+                        <option value="Associate Level resumes">Associate Level resumes</option>
+                        <option value="Senior Level Resum">Senior Level Resume</option>
+                        <option value="Chronological Resume">Chronological Resume</option>
+                        <option value="Functional Resume">Functional Resume</option>
+                        <option value="Combinational Resume">Combinational Resume</option>
+                        <option value="Target Resume">Target Resume</option>
+                    </select><br>
+                    <textarea name="Message" id="Message" cols="30" rows="2" placeholder="Comments"></textarea>
                     <div class="btnsum btn-primary">
                         <button>Submit</button>
                     </div>
+                    </form>
+                    <span id="msg"></span>
                 </div>
             </div>
         </div>
-<script> 
-$(document).ready(function()
-{
-    $('.form-popup').show();
-})
-$('.form-close').click(function(){
-    $('form-popup').hide();
-}) -->
 
-</script>
-        <!-- Header Start -->
+<script>
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbzkganH2xyis_Z6zC5LUgSgGj9MzURgMkBns2c6-VPEPchfTWtw97ZhtI7FXeSwBvx4Ug/exec'
+            const form = document.forms['submit-to-google-sheet']
+            const msg = document.getElementById("msg")
+            form.addEventListener('submit', e => {
+              e.preventDefault()
+              fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                .then(response => {
+                    msg.innerHTML= "Message sent successfully"
+                    setTimeout(function(){
+                        msg.innerHTML=""
+                    },5000)
+                    form.reset()
+                })
+                .catch(error => console.error('Error!', error.message))
+            })
+          </script>
+       
+
+        <!-- POPUP FORM END -->
+       
+                <!-- Header Start -->
         <div class="container-fluid header bg-white p-0">
             <div class="row g-0 align-items-center flex-column-reverse flex-md-row">
                 <div class="col-md-6 p-5 mt-lg-5">
@@ -166,10 +189,10 @@ $('.form-close').click(function(){
                     <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
                         <a class="cat-item d-block bg-light text-center rounded p-3" href="">
                             <div class="rounded p-4">
-                                <h4>RESUME FOR FRESHERS</h4>
-                                <span>Functional and Targeted Resume </span>
+                                <h4>FRESHERS</h4>
+                                <span>Functional and Targeted Resume</span><br>
                                 <div class="icon1 mb-3 b1" >
-                                    <h3>Rs.1399/-</h3>
+                                        <h3>Rs.499/-</h3>
                                 </div>
                                 
                             </div>
@@ -178,10 +201,10 @@ $('.form-close').click(function(){
                     <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
                         <a class="cat-item d-block bg-light text-center rounded p-3" href="">
                             <div class="rounded p-4">
-                                <h4>ENTRY LEVEL RESUME</h4>
-                                <span>For less than 2 years of Experience</span>
+                                <h4>ASSOCIATE</h4>
+                                <span>For less than 5 years of Experience</span>
                                 <div class="icon1 mb-3">
-                                    <h3>Rs.499/-</h3>
+                                    <h3>Rs.999/-</h3>
                                 </div>
                                 
                             </div>
@@ -190,10 +213,10 @@ $('.form-close').click(function(){
                     <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
                         <a class="cat-item d-block bg-light text-center rounded p-3" href="">
                             <div class="rounded p-4">
-                                <h4>ASSOCIATE LEVEL RESUME</h4>
-                                <span>For less than 5 years of Experience</span>
+                                <h4>EXPERIENCED</h4>
+                                <span>For more than 7+ years of Experience</span>
                                 <div class="icon1 mb-3">
-                                    <h3>Rs.699/-</h3>
+                                    <h3>Rs.1499/-</h3>
                                 </div>
                             </div>
                         </a>
@@ -201,16 +224,16 @@ $('.form-close').click(function(){
                     <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
                         <a class="cat-item d-block bg-light text-center rounded p-3" href="">
                             <div class="rounded p-4">
-                                <h4>SENIOR LEVEL RESUME</h4>
-                                <span>For more than 7+ years of Experience</span>
+                                <h4>TARGETED RESUME</h4>
+                                <span>For Specific Job Related</span>
                                 <div class="icon1 mb-3">
-                                    <h3>Rs.899/-</h3>
+                                    <h3>Rs.2000/-</h3>
                                 </div>
                                 
                             </div>
                         </a>
                     </div>
-                    <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <!-- <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
                         <a class="cat-item d-block bg-light text-center rounded p-3" href="">
                             <div class="rounded p-4">
                                 <h4>CHRONOLOGICAL RESUME</h4>
@@ -255,7 +278,7 @@ $('.form-close').click(function(){
                                 </div>
                             </div>
                         </a>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -323,8 +346,8 @@ $('.form-close').click(function(){
                                         <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">Appartment</div>-->
                                     </div>
                                     <div class="p-4 pb-0">
-                                        <a class="d-block h5 mb-2" href="package.html">RESUME FOR FRESHERS</a>
-                                        <h5 class="text-primary mb-3">Rs.1399/-</h5>
+                                        <a class="d-block h5 mb-2" href="package.html">FRESHERS</a>
+                                        <h5 class="text-primary mb-3">Rs.499/-</h5>
                                         <p><i class=" text-primary me-2"></i>Functional and Targeted Resume</p>
                                         <p><i class="fa fa-circle text-primary me-3"></i>CV/Resume Written by Expert</p>
                                         <p><i class="fa fa-circle text-primary me-3"></i>Free Cover Letter</p>
@@ -354,8 +377,8 @@ $('.form-close').click(function(){
                                         <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">Villa</div> -->
                                     </div>
                                     <div class="p-4 pb-0">
-                                        <a class="d-block h5 mb-2" href="package.html">ENTRY LEVEL RESUME</a>
-                                        <h5 class="text-primary mb-3">Rs.499/-</h5>
+                                        <a class="d-block h5 mb-2" href="package.html">ASSOCIATE</a>
+                                        <h5 class="text-primary mb-3">Rs.999/-</h5>
                                         <p><i class=" text-primary me-2"></i>For less than 2 years of Experience</p>
                                         <p><i class="fa fa-circle text-primary me-3"></i>CV/Resume Written by Expert</p>
                                         <p><i class="fa fa-circle text-primary me-3"></i>Free Cover Letter</p>
@@ -386,7 +409,7 @@ $('.form-close').click(function(){
                                     </div>
                                     <div class="p-4 pb-0">
                                         <a class="d-block h5 mb-2" href="package.html">TARGETED RESUME</a>
-                                        <h5 class="text-primary mb-3">Rs.1399/-</h5>
+                                        <h5 class="text-primary mb-3">Rs.2000/-</h5>
                                         <p><i class=" text-primary me-2"></i>For Specific Job Related</p>
                                         <p><i class="fa fa-circle text-primary me-3"></i>CV/Resume Written by Expert</p>
                                         <p><i class="fa fa-circle text-primary me-3"></i>Free Cover Letter</p>
@@ -414,11 +437,12 @@ $('.form-close').click(function(){
                             </div>
                         </div>
                     </div>
-                   
+                </div>
                    
         <!-- Property List End -->
 
 
+        
         <!-- Call to Action Start -->
         <div class="container-xxl py-5">
             <div class="container">
@@ -433,7 +457,7 @@ $('.form-close').click(function(){
                                     <h1 class="mb-3">Get In Touch With Us Today</h1>
                                     <p>Have Any Questions? We Are Happy To Answer Your Questions.</p>
                                 </div>
-                                <a href="tel:+919900966943" class="btn btn-primary py-3 px-4 me-2"><i class="fa fa-phone-alt me-2"></i>Make A Call</a>
+                                <a href="" class="btn btn-primary py-3 px-4 me-2"><i class="fa fa-phone-alt me-2"></i>Make A Call</a>
                                 <a href="" class="btn btn-dark py-3 px-4"><i class="fa fa-calendar-alt me-2"></i>Get Appoinment</a>
                             </div>
                         </div>
@@ -443,9 +467,8 @@ $('.form-close').click(function(){
         </div>
         <!-- Call to Action End -->
 
-
         <!-- Team Start -->
-        <div class="container-xxl py-5">
+        <div class="container-xxl py-5" id="pp">
             <div class="container"  >
                 <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
                     <h1 class="mb-3">Professional Partners</h1>
@@ -454,14 +477,14 @@ $('.form-close').click(function(){
                     <div class="col-lg-2 col-md-4 wow fadeInUp" data-wow-delay="0.1s">
                         <div class="team-item rounded overflow-hidden">
                             <div class="position-relative">
-                                <img class="img-fluid" src="logos/l1.png" alt="" width="auto"height="150">
+                                <img class="img-fluid" src="logos/l1.png" alt="AWS"  height="150">
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-2 col-md-4 wow fadeInUp" data-wow-delay="0.3s">
                         <div class="team-item rounded overflow-hidden">
                             <div class="position-relative">
-                                <img class="img-fluid" src="logos/l2.png" alt="" width="auto"height="150">
+                                <img class="img-fluid" src="logos/l2.png" alt="" height="150">
                             </div>
                             
                         </div>
@@ -469,7 +492,7 @@ $('.form-close').click(function(){
                     <div class="col-lg-2 col-md-4 wow fadeInUp" data-wow-delay="0.5s">
                         <div class="team-item rounded overflow-hidden">
                             <div class="position-relative">
-                                <img class="img-fluid" src="logos/l3.png" alt="" width="auto"height="150">
+                                <img class="img-fluid" src="logos/l3.png" alt="" height="150">
                             </div>
                             
                         </div>
@@ -477,14 +500,14 @@ $('.form-close').click(function(){
                     <div class="col-lg-2 col-md-4 wow fadeInUp" data-wow-delay="0.7s">
                         <div class="team-item rounded overflow-hidden">
                             <div class="position-relative">
-                                <img class="img-fluid" src="logos/l4.png" alt="" width="auto"height="150">
+                                <img class="img-fluid" src="logos/l4.png" alt="" height="150">
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-2 col-md-4 wow fadeInUp" data-wow-delay="0.9s">
                         <!-- <div class="team-item rounded overflow-hidden"> -->
                             <div class="position-relative">
-                                <img class="img-fluid" src="logos/l5.png" alt="" width="auto"height="150">
+                                <img class="img-fluid" src="logos/l5.png" alt="" height="150">
                             </div>
                         </div>
                     </div>
@@ -578,11 +601,11 @@ $('.form-close').click(function(){
                     <div class="col-lg-3 col-md-6">
                         <h5 class="text-white mb-4">Explore </h5>
 
-                        <a class="btn btn-link text-white-50" href="">About Us</a>
-                        <a class="btn btn-link text-white-50" href="">Contact Us</a>
-                        <a class="btn btn-link text-white-50" href="">Our Services</a>
-                        <a class="btn btn-link text-white-50" href="">Packages</a>
-                        <a class="btn btn-link text-white-50" href="">Professional partners</a>
+                        <a class="btn btn-link text-white-50" href="#">About Us</a>
+                        <a class="btn btn-link text-white-50" href="contact.html">Contact Us</a>
+                        <a class="btn btn-link text-white-50" href="#">Our Services</a>
+                        <a class="btn btn-link text-white-50" href="package.html">Packages</a>
+                        <a class="btn btn-link text-white-50" href="#pp">Professional partners</a>
                     </div>
                 </div>
             </div>
@@ -613,7 +636,7 @@ $('.form-close').click(function(){
 
        <!-- Whatsapp  -->
 <div class="wasapp">
-    <a href="https://wa.me/918217631128?text=HI." target="_blank">
+    <a href="https://wa.me/918217631128?text=Hi, LeapCamp.." target="_blank">
     <img src="logos/whatsappicon.png" alt="whatsapp" width="60">
 
 </a>

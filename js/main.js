@@ -79,3 +79,18 @@
     
 })(jQuery);
 
+// POP UP FORM RELOADS ON OPEN 
+
+window.addEventListener("load",function(){
+    this.setTimeout(
+        function open(event){
+            document.querySelector(".form-popup").style.display="block";
+        },
+        3000
+    )
+});
+
+document.querySelector("#close").addEventListener
+("click", function(){
+    document.querySelector(".form-popup").style.display="none";
+});
