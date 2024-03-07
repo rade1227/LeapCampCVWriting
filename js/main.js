@@ -90,7 +90,19 @@ window.addEventListener("load",function(){
     )
 });
 
+
 document.querySelector("#close").addEventListener
 ("click", function(){
     document.querySelector(".form-popup").style.display="none";
 });
+
+document.querySelector("#btnbtn").addEventListener
+("click", function(){
+    document.querySelector(".form-popup").style.display="none";
+});
+
+// disable right Click
+
+// document.addEventListener("contextmenu",function(e){
+//     e.preventDefault();
+// },false);

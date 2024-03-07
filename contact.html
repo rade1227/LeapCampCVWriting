@@ -176,8 +176,8 @@
                                                 <option value="none">Select your Package</option>
                                                 <option value="Freshers">Freshers</option>
                                                 <option value="Associate">Associate</option>
-                                                <option value="Experienced">Experienced </option>
-                                                <option value="Targeted">Targeted</option>
+                                                <option value="Experience">Experience </option>
+                                                <option value="Targete">Target</option>
                                             </select>
                                             
                                         </div>
@@ -201,21 +201,23 @@
             </div>
             </div>
         
-        <!-- Contact End -->
+        <!-- Contact End --> <!-- Attached LeapCamp's GoogleSheet-->
         <script>
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbyUxk182s9LCB-FQp2p5j38zaa0Lcu3XMGjF3n96BXFMhN91zSfQ0gSRSjDXE5as39BPw/exec'
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbyfY2FgXH6wARgr8k6tGQR9KfuQQI-YMJvlRLrxuEurXXsx1ueBQYRbKvA3Slpbm5g/exec'
             const form = document.forms['submit-to-google-sheet']
             const msg = document.getElementById("msg")
             form.addEventListener('submit', e => {
               e.preventDefault()
               fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-                .then(response => {
-                    msg.innerHTML= "Message sent successfully"
-                    setTimeout(function(){
-                        msg.innerHTML=""
-                    },5000)
-                    form.reset()
-                })
+              .then(response => alert("Your message was sent successfully."))
+              .then(()=> {form.reset(); })
+                // .then(response => {
+                //     msg.innerHTML= "Message sent successfully"
+                //     setTimeout(function(){
+                //         msg.innerHTML=""
+                //     },5000)
+                //     form.reset()
+                // })
                 .catch(error => console.error('Error!', error.message))
             })
           </script>
