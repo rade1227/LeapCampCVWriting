@@ -103,6 +103,9 @@ document.querySelector("#btnbtn").addEventListener
 
 // disable right Click
 
- document.addEventListener("contextmenu",function(e){
-     e.preventDefault();
- },false);
+document.addEventListener("contextmenu",(event) => {
+    event.preventDefault();
+},false);
+
+
+document.onselectstart = ('', event => event.preventDefault());
